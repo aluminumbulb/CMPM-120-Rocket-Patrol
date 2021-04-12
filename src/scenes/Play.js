@@ -10,7 +10,6 @@ class Play extends Phaser.Scene{
         this.load.image('ship', 'assets/spaceship.png');
     }
 
-
     create(){
         //layers are important
         this.starfield = this.add.tileSprite(
@@ -28,8 +27,23 @@ class Play extends Phaser.Scene{
             this,
             100,
             200,
-            'spaceship'
+            'ship'
         );
+
+        this.ship2 = new Ships(
+            this,
+            300,
+            240,
+            'ship'
+        );
+
+        this.ship3 = new Ships(
+            this,
+            380,
+            300,
+            'ship'
+        );
+
 
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
@@ -48,5 +62,7 @@ class Play extends Phaser.Scene{
         this.starfield.tilePositionX -= 4;
         this.p1Rocket.update();
         this.ship1.update();
+        this.ship2.update();
+        this.ship3.update();
     }
 }
