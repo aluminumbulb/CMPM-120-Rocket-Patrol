@@ -9,9 +9,7 @@ class Play extends Phaser.Scene{
         this.load.image('rocket', 'assets/rocket.png');
         this.load.image('ship', 'assets/spaceship.png');
         this.load.spritesheet('explosion', 'assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
-        this.load.audio('sfx_select', '/assets/blip_select12.wav');
-        this.load.audio('sfx_explosion', 'assets/explosion38.wav');
-        this.load.audio('sfx_rocket', 'assets/rocket_shot.wav');
+
     }
 
     create(){
@@ -86,9 +84,9 @@ class Play extends Phaser.Scene{
         scoreConfig.fixedWidth = 0;
         this.gameOver = false;
 
-        this.clock  = this.time.delayedCall(60000, () =>{
+        this.clock  = this.time.delayedCall(game.settings.gameTimer, () =>{
             this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 +64, '(F)ire to Restart', scoreConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 +64, '(F)ire to Restart or <- for Menu', scoreConfig).setOrigin(0.5);
             this.gameOver=true;
         },null, this);
     }
@@ -96,6 +94,9 @@ class Play extends Phaser.Scene{
     update(){
 if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyF)){
     this.scene.restart();
+}
+if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
+    this.scene.start("menuScene");
 }
 
         this.starfield.tilePositionX -= 4;
