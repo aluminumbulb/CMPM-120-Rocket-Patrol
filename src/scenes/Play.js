@@ -30,21 +30,21 @@ class Play extends Phaser.Scene{
             100,
             200,
             'ship'
-        );
+        ).setOrigin(0,0);
 
         this.ship2 = new Ships(
             this,
             300,
             240,
             'ship'
-        );
+        ).setOrigin(0,0);
 
         this.ship3 = new Ships(
             this,
             380,
             300,
             'ship'
-        );
+        ).setOrigin(0,0);
 
 
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -127,7 +127,7 @@ if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
         console.log("explode called");
         ship.alpha = 0;
         this.sound.play('sfx_explosion');
-        let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(.5, 0);
+        let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0, 0);
         console.log(boom);
         boom.anims.play('explode');//plays animation
         boom.on('animationcomplete', ()=>{
