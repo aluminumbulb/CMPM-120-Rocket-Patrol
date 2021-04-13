@@ -99,13 +99,14 @@ if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
     this.scene.start("menuScene");
 }
 
-        this.starfield.tilePositionX -= 4;
+        
         if(!this.gameOver)
         { 
             this.p1Rocket.update();
             this.ship1.update();
             this.ship2.update();
             this.ship3.update();
+            this.starfield.tilePositionX -= 4;
         }
         this.checkCollision(this.p1Rocket, this.ship1);
         this.checkCollision(this.p1Rocket, this.ship2);
@@ -131,7 +132,7 @@ if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
         console.log(boom);
         boom.anims.play('explode');//plays animation
         boom.on('animationcomplete', ()=>{
-            ship.reset()
+            ship.reset();
             ship.alpha = 1;//make ship visible
             boom.destroy();//removes sprite
         })
